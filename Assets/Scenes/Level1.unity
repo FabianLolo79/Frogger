@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 34875141}
+  - component: {fileID: 34875142}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -155,6 +156,27 @@ Transform:
   - {fileID: 1144199641}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &34875142
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34875140}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8712132edefa7cc4e825f08e5cf752f8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &75494543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1629,6 +1651,7 @@ GameObject:
   - component: {fileID: 1144199644}
   - component: {fileID: 1144199643}
   - component: {fileID: 1144199642}
+  - component: {fileID: 1144199646}
   m_Layer: 0
   m_Name: Frogger
   m_TagString: Untagged
@@ -1663,6 +1686,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f56f6fcfc7de14cb3c069121cf952f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleSprite: {fileID: 21300000, guid: 31f3966c908351d42bd133e24055f6d0, type: 3}
+  leapSprite: {fileID: 21300000, guid: 99283192cd74aaa43ba561493473fe2c, type: 3}
 --- !u!50 &1144199643
 Rigidbody2D:
   serializedVersion: 4
@@ -1787,6 +1812,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1144199646
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144199640}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7ef58a830930dcc4dba37eb4282254a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1144225802
 PrefabInstance:
   m_ObjectHideFlags: 0

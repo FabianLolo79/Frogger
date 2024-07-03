@@ -1,14 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class FroggerController : MonoBehaviour
 {
+    private SpriteRenderer _spriteRenderer;
+    public Sprite idleSprite;
+    public Sprite leapSprite;
+    
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 
@@ -43,6 +45,31 @@ public class FroggerController : MonoBehaviour
 
     void Move(Vector3 direction)
     {
-        transform.position += direction;
+        Vector3 destination = transform.position + direction;
+        StartCoroutine(Leap(destination));
     }
+
+    private IEnumerator Leap(Vector3 destination)
+    {
+        Vector3 startPosition = transform.position;
+        
+        float elapsed = 0f;
+        float duration = 0.125f;
+
+        _spriteRenderer.sprite = leapSprite;
+
+        while(elapsed < duration)
+        {
+            // le puso t en el tutorial, es tiempo? volver a ver 56:50 min
+            float tiempo = elapsed / duration;
+            transform.position = Vector3.Lerp(startPosition, destination, tiempo);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = destination;
+        _spriteRenderer.sprite = idleSprite;
+    }
+
+  
 }
