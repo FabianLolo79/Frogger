@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2432095775906239648}
   - component: {fileID: 7228676378453734778}
   - component: {fileID: 5785208762267108746}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Home
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.2}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 2781304483787024445}
   - component: {fileID: 953136351972774000}
   - component: {fileID: 4486160683811299050}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HomeFrog
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5053481457582004483}
   - component: {fileID: -6523662391119140266}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TwoTurtles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

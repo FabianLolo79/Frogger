@@ -6,6 +6,7 @@ public class FroggerController : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     public Sprite idleSprite;
     public Sprite leapSprite;
+    public Sprite deadSprite;
     
     // Start is called before the first frame update
     void Awake()
@@ -46,7 +47,36 @@ public class FroggerController : MonoBehaviour
     void Move(Vector3 direction)
     {
         Vector3 destination = transform.position + direction;
-        StartCoroutine(Leap(destination));
+        
+        //para detectar sobre que layer estoy para actuar
+        Collider2D barrier = Physics2D.OverlapBox(destination, Vector2.zero, 0f, LayerMask.GetMask("Barrier"));
+        Collider2D platform = Physics2D.OverlapBox(destination, Vector2.zero, 0f, LayerMask.GetMask("Platform"));
+        Collider2D obstacle = Physics2D.OverlapBox(destination, Vector2.zero, 0f, LayerMask.GetMask("Obstacle"));
+
+        if (barrier != null)
+        {
+            return;
+        }
+
+        if (platform != null)
+        {
+            transform.SetParent(platform.transform);
+        }
+        else
+        {
+            transform.SetParent(null);
+        }
+
+        if (obstacle != null && platform == null)
+        {
+            transform.position = destination;
+            Death();
+        }
+        else
+        {
+            StartCoroutine(Leap(destination));
+        }
+
     }
 
     private IEnumerator Leap(Vector3 destination)
@@ -71,5 +101,21 @@ public class FroggerController : MonoBehaviour
         _spriteRenderer.sprite = idleSprite;
     }
 
-  
+    void Death()
+    {
+        // Algo
+        transform.rotation = Quaternion.identity;
+        _spriteRenderer.sprite = deadSprite;
+        enabled = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (enabled && collision.gameObject.layer == LayerMask.NameToLayer("Obstacle") && transform.parent == null)
+        {
+            Death();
+        }
+    }
+
+
 }
