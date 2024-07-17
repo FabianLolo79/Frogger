@@ -5,16 +5,16 @@ using UnityEngine;
 public class Home : MonoBehaviour
 {
 
-    public GameObject frog;
+    public GameObject homeFrog;
 
     private void OnEnable()
     {
-        frog.SetActive(true);
+        homeFrog.SetActive(true);
     }
 
     private void OnDisable()
     {
-        frog.SetActive(false);
+        homeFrog.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,6 +22,7 @@ public class Home : MonoBehaviour
         if (collision.tag == "Player")
         {
             enabled = true;
+            FindObjectOfType<GameManager>().HomeOccupied();
         }   
     }
 }

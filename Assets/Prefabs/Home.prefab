@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e125fca9f7bd4f43b7a9df173eb54ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frog: {fileID: 2702187918118383223}
+  homeFrog: {fileID: 2702187918118383223}
 --- !u!1 &2702187918118383223
 GameObject:
   m_ObjectHideFlags: 0

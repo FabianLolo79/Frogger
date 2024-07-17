@@ -4,14 +4,19 @@ using UnityEngine;
 public class FroggerController : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
+    private Vector3 _spawnPosition;
+
     public Sprite idleSprite;
     public Sprite leapSprite;
     public Sprite deadSprite;
+
+
     
     // Start is called before the first frame update
     void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spawnPosition = transform.position;
     }
 
 
@@ -103,10 +108,24 @@ public class FroggerController : MonoBehaviour
 
     void Death()
     {
-        // Algo
+        StopAllCoroutines();
+
         transform.rotation = Quaternion.identity;
         _spriteRenderer.sprite = deadSprite;
         enabled = false;
+
+        Invoke(nameof(Respawn), 1f);
+    }
+
+    public void Respawn()
+    {
+        StopAllCoroutines();
+
+        transform.rotation = Quaternion.identity;
+        transform.position = _spawnPosition;
+        _spriteRenderer.sprite = idleSprite;
+        gameObject.SetActive(true);
+        enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
