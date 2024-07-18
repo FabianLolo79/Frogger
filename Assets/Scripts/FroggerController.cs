@@ -5,6 +5,7 @@ public class FroggerController : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
     private Vector3 _spawnPosition;
+    private float _farthesRow;
 
     public Sprite idleSprite;
     public Sprite leapSprite;
@@ -79,6 +80,12 @@ public class FroggerController : MonoBehaviour
         }
         else
         {
+            if (destination.y > _farthesRow)
+            {
+                _farthesRow = destination.y;
+                FindObjectOfType<GameManager>().AdvancedRow();
+            }
+
             StartCoroutine(Leap(destination));
         }
 
@@ -106,7 +113,7 @@ public class FroggerController : MonoBehaviour
         _spriteRenderer.sprite = idleSprite;
     }
 
-    void Death()
+    public void Death()
     {
         StopAllCoroutines();
 
@@ -123,6 +130,7 @@ public class FroggerController : MonoBehaviour
 
         transform.rotation = Quaternion.identity;
         transform.position = _spawnPosition;
+        _farthesRow = _spawnPosition.y;
         _spriteRenderer.sprite = idleSprite;
         gameObject.SetActive(true);
         enabled = true;
