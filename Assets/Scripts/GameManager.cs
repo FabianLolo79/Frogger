@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     private int _lives;
     private int _time;
 
+    public GameObject gameOverMenu;
+
 
     private void Awake()
     {
@@ -24,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     private void NewGame()
     {
+        gameOverMenu.SetActive(false);
+
         SetScore(0);
         SetLives(3);
         NewLevel();
@@ -36,11 +40,6 @@ public class GameManager : MonoBehaviour
             _homes[i].enabled = false;
         }
 
-        NewRound();
-    }
-
-    private void NewRound()
-    {
         Respawn();
     }
 
@@ -66,6 +65,46 @@ public class GameManager : MonoBehaviour
         _frogger.Death();
     }
 
+    public void Died()
+    {
+        SetLives(_lives - 1);
+
+        if (_lives > 0)
+        {
+            Invoke(nameof(Respawn), 1f);
+        } 
+        else
+        {
+            Invoke(nameof(GameOver), 1f);
+        }
+    }
+
+    private void GameOver()
+    {
+        _frogger.gameObject.SetActive(false);
+        gameOverMenu.SetActive(true);
+
+        StopAllCoroutines();
+        StartCoroutine(PlayAgain());
+    }
+
+    private IEnumerator PlayAgain()
+    {
+        bool playAgain = false;
+
+        while (!playAgain)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                playAgain = true;
+            }
+
+            yield return null;
+        }
+
+        NewGame();
+    }
+
     public void AdvancedRow()
     {
         SetScore(_score + 10);
@@ -81,11 +120,12 @@ public class GameManager : MonoBehaviour
         if (Cleared())
         {
             SetScore(_score + 1000);
+            SetLives(_lives + 1);
             Invoke(nameof(NewLevel),1f);
         }
         else
         {
-            Invoke(nameof(NewRound), 1f);
+            Invoke(nameof(Respawn), 1f);
         }
     }
 
