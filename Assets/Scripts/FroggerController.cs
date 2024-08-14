@@ -11,8 +11,10 @@ public class FroggerController : MonoBehaviour
     public Sprite idleSprite;
     public Sprite leapSprite;
     public Sprite deadSprite;
-    public AudioClip jumpSound;
+    //public AudioClip jumpSound;
     public AudioClip deadthSound;
+
+    
 
 
 
@@ -37,25 +39,25 @@ public class FroggerController : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             Move(Vector3.up);
-            _playerAudio.PlayOneShot(jumpSound, 1f);
+            _playerAudio.Play();
         }
         else  if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 180f);
             Move(Vector3.down);
-            _playerAudio.PlayOneShot(jumpSound, 1f);
+            _playerAudio.Play();
         }
         else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 90f);
             Move(Vector3.left);
-            _playerAudio.PlayOneShot(jumpSound, 1f);
+            _playerAudio.Play();
         }
         else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             transform.rotation = Quaternion.Euler(0f, 0f, -90f);
             Move(Vector3.right);
-            _playerAudio.PlayOneShot(jumpSound, 1f);
+            _playerAudio.Play();
         }
     }
 
@@ -130,7 +132,7 @@ public class FroggerController : MonoBehaviour
         transform.rotation = Quaternion.identity;
         _spriteRenderer.sprite = deadSprite;
         enabled = false;
-        _playerAudio.PlayOneShot(deadthSound, 1f);
+        _playerAudio.PlayOneShot(deadthSound);
         FindObjectOfType<GameManager>().Died();
     }
 
